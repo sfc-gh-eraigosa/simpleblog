@@ -152,3 +152,19 @@ Based on video tutorial given from [Traversy Media - article](https://www.youtub
 1. Add `delete` button to `comments` partial view.
 
 1. Add `destroy` method to `Comments` controller.
+
+## Add basic auth
+
+1. Add `http_basic_authenticate_with` to `Posts` controller.
+   ```
+   http_basic_authenticate_with name: 'brad',
+                                password: '1234',
+                                except: [ :index, :show]
+   ```
+
+1. Add `http_basic_authenticate_with` to `Comments` controller
+   ```
+   http_basic_authenticate_with name: 'brad',
+                                password: '1234',
+                                only: [ :destroy ]
+   ```
