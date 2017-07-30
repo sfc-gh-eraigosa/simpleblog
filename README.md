@@ -104,3 +104,51 @@ Based on video tutorial given from [Traversy Media - article](https://www.youtub
 1. Add `delete` link to the `show` view in `views/posts/show.html.erb`
 
 ## Add Comment functionality
+
+1. Create a new Model `Comment` that references `Post`
+   ```
+   rails g model Comment username:string body:text post:references
+   rails db:migrate
+   ```
+
+1. Add `has_many` association in `Post` model
+
+1. Add routes for new resources `comments`
+   ```
+   resources :posts do
+     resources :comments
+   end
+   ```
+   check new routes with `rails routes`
+
+1. Create `Comments` controller
+   ```
+   rails g controller Comments
+   ```
+
+1. Show comments on `show` view of `Post`
+
+1. Copy form from `edit` view to the end of `show` and make edits for comments form.
+   > add hr and h3 title
+   ```
+   <hr>
+   <h3>Add Comment</h3>
+   ```
+   > add form_for helper
+   ```
+   <%= form_for([@post, @post.comments.build]) do |f| %>
+   ```
+   > add username and body fields
+
+1. Create `create` method in `Comments` controller
+
+1. Show the comments on the `show.html.erb` view
+
+1. break up comments from `show.html.erb` view into comments partial views
+   > views/comments/_comments.html.erb
+   >
+   > views/comments/_form.html.erb
+
+1. Add `delete` button to `comments` partial view.
+
+1. Add `destroy` method to `Comments` controller.
